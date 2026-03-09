@@ -33,4 +33,4 @@ jobs:
         working-directory: terraform
 
       - name: Frontend deployen
-        run: aws s3 sync frontend/ s3://passwortmanager-bela090-ci-2026-03 --delete
+        run: aws s3 sync frontend/ s3://passwortmanager-bela090-ci --delete
