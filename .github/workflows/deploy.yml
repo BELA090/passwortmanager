@@ -10,8 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Repository auschecken
         uses: actions/checkout@v3
+
 
       - name: AWS Credentials konfigurieren
         uses: aws-actions/configure-aws-credentials@v2
@@ -21,16 +23,20 @@ jobs:
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: us-east-1
 
+
       - name: Terraform installieren
         uses: hashicorp/setup-terraform@v3
+
 
       - name: Terraform Init
         run: terraform init
         working-directory: terraform
 
+
       - name: Terraform Apply
         run: terraform apply -auto-approve
         working-directory: terraform
 
+
       - name: Frontend deployen
-  run: aws s3 sync frontend/ s3://passwortmanager-bela090-website-2026 --delete
+        run: aws s3 sync frontend/ s3://passwortmanager-bela090-website-2026 --delete
