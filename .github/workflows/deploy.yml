@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: Deploy Passwortmanager
 
 on:
   push:
@@ -6,20 +6,34 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Repository auschecken
         uses: actions/checkout@v3
 
-      - name: Node installieren
-        uses: actions/setup-node@v3
+      - name: AWS Credentials konfigurieren
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          node-version: 18
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: us-east-1
 
-      - name: Dependencies installieren
-        run: npm install
+      - name: Terraform installieren
+        uses: hashicorp/setup-terraform@v2
 
-      - name: Tests ausführen
-        run: npm test
+      - name: Terraform Init
+        run: |
+          cd terraform
+          terraform init
+
+      - name: Terraform Apply
+        run: |
+          cd terraform
+          terraform apply -auto-approve
+
+      - name: Upload Website
+        run: |
+          aws s3 sync frontend/ s3://passwortmanager-frontend --delete
