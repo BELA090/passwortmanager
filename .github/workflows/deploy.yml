@@ -22,18 +22,15 @@ jobs:
           aws-region: us-east-1
 
       - name: Terraform installieren
-        uses: hashicorp/setup-terraform@v2
+        uses: hashicorp/setup-terraform@v3
 
       - name: Terraform Init
-        run: |
-          cd terraform
-          terraform init
+        run: terraform init
+        working-directory: terraform
 
       - name: Terraform Apply
-        run: |
-          cd terraform
-          terraform apply -auto-approve
+        run: terraform apply -auto-approve
+        working-directory: terraform
 
-      - name: Upload Website
-        run: |
-          aws s3 sync frontend/ s3://passwortmanager-bela090-ci-2026-01 --delete
+      - name: Frontend deployen
+        run: aws s3 sync frontend/ s3://passwortmanager-bela090-ci-2026-02 --delete

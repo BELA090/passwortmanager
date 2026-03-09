@@ -1,12 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
-  <title>Passwortmanager</title>
+<meta charset="UTF-8">
+<title>Passwortmanager</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <h1>Passwortmanager Deployment läuft</h1>
-  <p>CI/CD mit GitHub Actions funktioniert.</p>
-</body>
 
+<h1>Passwortmanager</h1>
+
+<div class="container">
+
+<input id="website" placeholder="Website">
+<input id="username" placeholder="Benutzername">
+<input id="password" type="password" placeholder="Passwort">
+
+<button onclick="savePassword()">Speichern</button>
+
+<h2>Gespeicherte Passwörter</h2>
+
+<ul id="passwordList"></ul>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
 </html>
