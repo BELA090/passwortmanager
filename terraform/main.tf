@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "frontend_bucket" {
-  bucket = "passwortmanager-frontend-bela090"
+  bucket = "passwortmanager-bela090-2026"
 }
 
 resource "aws_s3_bucket_website_configuration" "frontend_config" {
