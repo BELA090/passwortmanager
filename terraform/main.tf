@@ -2,12 +2,8 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "random_id" "bucket_id" {
-  byte_length = 4
-}
-
 resource "aws_s3_bucket" "frontend_bucket" {
-  bucket = "passwortmanager-bela090-${random_id.bucket_id.hex}"
+  bucket = "passwortmanager-bela090-website-2026"
 }
 
 resource "aws_s3_bucket_website_configuration" "frontend_config" {
