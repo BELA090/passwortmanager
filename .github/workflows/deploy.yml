@@ -35,5 +35,5 @@ jobs:
           terraform apply -auto-approve
 
       - name: Upload Website
-  run: |
-    aws s3 sync frontend/ s3://passwortmanager-bela090-2026 --delete
+        run: |
+          aws s3 sync frontend/ s3://passwortmanager-bela090-2026 --delete
