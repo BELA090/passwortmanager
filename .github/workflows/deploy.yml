@@ -36,4 +36,4 @@ jobs:
 
       - name: Upload Website
         run: |
-          aws s3 sync frontend/ s3://passwortmanager-bela090-2026 --delete
+          aws s3 sync frontend/ s3://passwortmanager-bela090-ci-2026-01 --delete
